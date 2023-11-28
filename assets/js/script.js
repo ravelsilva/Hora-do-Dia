@@ -1,30 +1,31 @@
-let data = new Date();
-let agora = data.getHours();
+// Função para obter a hora atual
+function getHoraAtual() {
+  return new Date().getHours();
+}
 
-let horaDoDia = `Agora são ${agora} horas. `;
+// Função para atualizar a hora do dia
+function atualizarHoraDoDia() {
+  let horaDoDia = `Agora são ${getHoraAtual()} horas. `;
+  document.querySelector(".hour_of_day").innerText = horaDoDia;
+}
 
-let hora = document.querySelector(".hour_of_day");
-let img = document.querySelector(".image");
-
-hora.innerText = horaDoDia;
-
-img;
-
-function horaAtual() {
+// Função para atualizar o plano de fundo e a imagem com base na hora atual
+function atualizarBackgroundEImagem() {
+  let agora = getHoraAtual();
   let backgroundAtual = document.getElementById("contentArea");
+  let img = document.querySelector(".image");
 
   if (agora >= 6 && agora < 12) {
-    backgroundAtual.classList.remove("night");
-    backgroundAtual.classList.add("morning");
+    backgroundAtual.className = "morning";
   } else if (agora < 18) {
     img.src = "../assets/img/Tarde.webp";
-    backgroundAtual.classList.remove("morning");
-    backgroundAtual.classList.add("afternoon");
+    backgroundAtual.className = "afternoon";
   } else {
     img.src = "../assets/img/noite.jpg";
-    backgroundAtual.classList.remove("afternoon");
-    backgroundAtual.classList.add("night");
+    backgroundAtual.className = "night";
   }
-  console.log(agora);
 }
-horaAtual();
+
+// Chamar as funções
+atualizarHoraDoDia();
+atualizarBackgroundEImagem();
